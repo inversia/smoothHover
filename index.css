@@ -1,0 +1,27 @@
+body {
+    background-color:#757575;
+    font-family: Helvetica;
+}
+
+.container {
+  display:flex;
+  width:100%;
+  position:relative;
+  flex-direction:row;
+  border: 2px solid #E91E63;
+}
+
+  .container .item {
+    height:15vw;
+    background-color:#c0ca33;
+    flex:1;
+    color:#424242;
+    padding:0vw 0vw;
+    margin:2vw 2vw;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    opacity:0.2;
+    animation: sizeChange 0.4s ease-in-out;
+  }
