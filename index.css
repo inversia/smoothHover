@@ -32,7 +32,6 @@ body {
 
   .container .item {
     height:15vw;
-    background-color:#ffd5e5;
     box-sizing:border-box;
     flex:1;
     font-size:5vw;
