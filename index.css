@@ -23,12 +23,6 @@ body {
   height: 100%;
 }
 
-@keyframes colorChange {
-  0%   { background-color: pink;  }
-  50%  { background-color: #E91E63; }
-  100% { background-color: #ff0072; }
-}
-
 .container {
   display:flex;
   width:100%;
@@ -52,6 +46,4 @@ body {
     align-items:center;
     opacity:1;
     transform:scale(1);
-/*     animation: colorChange 1.4s ease-in-out alternate infinite;
-     */
   }
