@@ -31,6 +31,7 @@ body {
 }
 
   .container .item {
+    cursor:pointer;
     height:15vw;
     box-sizing:border-box;
     flex:1;
@@ -45,4 +46,13 @@ body {
     align-items:center;
     opacity:1;
     transform:scale(1);
+  }
+
+  .item .hover-circles{
+    position:absolute;
+    height:100%;
+    width:100%;
+    border-radius:100%;
+    z-index:-1;
+    
   }

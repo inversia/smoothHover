@@ -43,13 +43,15 @@ document.addEventListener ('DOMContentLoaded', () => {
     return to[0] + ((to[1] - to[0]) * (t ** exponent))
   } 
 
+  const items = $$('.item')
+
   document.addEventListener ('mousemove', e => {
     
     const mouse = Vec2 (e.clientX, e.clientY) // двумерный вектор, являющийся текущим положение мыши
     
-    const items = $$('.container .item')
-
     for (const item of items){
+
+      const circle = item.children[0]
       
       const rect    = item.getBoundingClientRect ()
       const leftTop = Vec2 (rect.left, rect.top)
@@ -57,15 +59,22 @@ document.addEventListener ('DOMContentLoaded', () => {
       const center  = leftTop.add (size.scale (0.5))
 
       const distanceToCenter = mouse.distance (center)
+      
       const opacity = rescale (distanceToCenter, [0, rect.width], [1, 0], 1.3)
+      const scale   = rescale (distanceToCenter, [0, rect.width], [1.2, 1], 0.9)
       
-      item.style.backgroundColor = `rgba(255,155,155,${opacity})`
+      if (true){
 
-      const gradCenter = mouse.sub (leftTop)
-      const color = `rgb(255,155,155) 0, rgba(255,155,155,0.5) ${rect.width}px, transparent ${rect.width * 5}px`
+        circle.style.backgroundColor = `rgba(255,155,155,${opacity})`
+        circle.style.transform = `scale(${scale})`
+
+      } else {
+
+        const gradCenter = mouse.sub (leftTop)
+        const color = `rgb(255,155,155) 0, rgba(255,155,155,0.5) ${rect.width}px, transparent ${rect.width * 5}px`
       
-      item.style.backgroundImage = `radial-gradient(circle at ${gradCenter.x.toFixed (2)}px ${gradCenter.y.toFixed (2)}px, ${color})`
-
+        circle.style.backgroundImage = `radial-gradient(circle at ${gradCenter.x.toFixed (2)}px ${gradCenter.y.toFixed (2)}px, ${color})`
+      }
     }
   })
 })
