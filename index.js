@@ -28,13 +28,14 @@ function Vec2 (x, y) {
 
 
 const $  = document.querySelector.bind(document)
+
 const $$ = document.querySelectorAll.bind(document)
 
 document.addEventListener ('DOMContentLoaded', () => {  
 
   const container = $('.container')
+  
   const numItem = container.children.length
-
 
   function rescale (x, from, to, exponent=1) {
 
@@ -47,29 +48,24 @@ document.addEventListener ('DOMContentLoaded', () => {
     const mouse = Vec2 (e.clientX, e.clientY) // двумерный вектор, являющийся текущим положение мыши
     
     const items = $$('.container .item')
-    const mouseX = e.clientX
-    const containerSize = container.offsetWidth
-    const itemSize = containerSize / numItem
-//     const center = Math.floor(itemSize/2)
 
     for (const item of items){
       
-      const rect = item.getBoundingClientRect ()
-      const center = Vec2 (rect.left, rect.top).add(Vec2 (rect.width, rect.height).scale (0.5))
+      const rect    = item.getBoundingClientRect ()
+      const leftTop = Vec2 (rect.left, rect.top)
+      const size    = Vec2 (rect.width, rect.height)
+      const center  = leftTop.add (size.scale (0.5))
 
-//       const itemCenter       = item.offsetLeft + (itemSize / 2.4)
-//       const distanceToCenter = Math.abs (mouseX - itemCenter)
-      
       const distanceToCenter = mouse.distance (center)
+      const opacity = rescale (distanceToCenter, [0, rect.width], [1, 0], 1.3)
       
-
-//       item.innerText = distanceToCenter.toFixed(2)
-
-      const opacity = rescale (distanceToCenter, [0, itemSize], [1, 0], 1.3)
-
       item.style.backgroundColor = `rgba(255,155,155,${opacity})`
+
+      const gradCenter = mouse.sub (leftTop)
+      const color = `rgb(255,155,155) 0, rgba(255,155,155,0.5) ${rect.width}px, transparent ${rect.width * 5}px`
+      
+      item.style.backgroundImage = `radial-gradient(circle at ${gradCenter.x.toFixed (2)}px ${gradCenter.y.toFixed (2)}px, ${color})`
 
     }
   })
-
 })
