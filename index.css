@@ -48,11 +48,11 @@ body {
     transform:scale(1);
   }
 
-  .item .hover-circles{
+  .item .hover-circle {
     position:absolute;
     height:100%;
     width:100%;
     border-radius:100%;
     z-index:-1;
-    
+    background-color:rgb(255,155,155);
   }
